@@ -78,8 +78,20 @@ const timelineEvents: TimelineEvent[] = [
 
 export default function StorySection() {
     return (
-        <section id="story" className="py-20 bg-gradient-to-br from-slate-50 via-white to-slate-100">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section
+            id="story"
+            className="py-20 relative"
+            style={{
+                backgroundImage: 'url(/backgrounds/turkey_ocean.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundAttachment: 'fixed',
+            }}
+        >
+            {/* Overlay for readability */}
+            <div className="absolute inset-0 bg-white/85 backdrop-blur-sm"></div>
+
+            <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

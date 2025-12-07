@@ -31,8 +31,7 @@ export const extracurriculars: Extracurricular[] = [
       "Participated in the NASA SpaceApps Hackathon (2 years)",
     ],
     media: [
-      { type: 'image', path: '/extracurriculars/coding/club_pic.jpg', caption: 'Coding Club' },
-      { type: 'image', path: '/extracurriculars/coding/hackathon_team.jpg', caption: 'Hackathon Team' },
+      { type: 'image', path: '/extracurriculars/coding/hackathon_team_new.jpg', caption: 'Hackathon Team' },
     ],
   },
   {
@@ -46,8 +45,8 @@ export const extracurriculars: Extracurricular[] = [
       "Learned about entrepreneurship with lessons from professors",
     ],
     media: [
-      { type: 'image', path: '/extracurriculars/uci_gati/pic1.jpg', caption: 'UCI GATI Program' },
-      { type: 'image', path: '/extracurriculars/uci_gati/pic2.jpg', caption: 'Final Presentation' },
+      { type: 'image', path: '/extracurriculars/uci_gati/pic1_new.jpg', caption: 'UCI GATI Program' },
+      { type: 'image', path: '/extracurriculars/uci_gati/pic2_new.jpg', caption: 'Final Presentation' },
     ],
   },
   {
@@ -59,8 +58,7 @@ export const extracurriculars: Extracurricular[] = [
     leadership: "President and Founder",
     description: "Founded a community service organization, which is also a club at GBHS. We educate seniors about technology, cybersecurity, and digital well-being by hosting seminars and Q&A sessions at various senior centers and organizations in the greater Sacramento and Bay Area.",
     media: [
-      { type: 'image', path: '/extracurriculars/tech4silvers/presentation_pic.jpg', caption: 'Tech4Silvers Presentation' },
-      { type: 'video', path: '/extracurriculars/tech4silvers/presentation_video.mp4', caption: 'Presentation Video' },
+      { type: 'image', path: '/extracurriculars/tech4silvers/presentation_pic_new.jpg', caption: 'Tech4Silvers Presentation' },
     ],
   },
   {
@@ -83,8 +81,8 @@ export const extracurriculars: Extracurricular[] = [
       },
     ],
     media: [
-      { type: 'image', path: '/extracurriculars/volleyball/national_pic.jpg', caption: 'National Volleyball Team' },
-      { type: 'image', path: '/extracurriculars/volleyball/national_win.jpg', caption: 'Championship Win' },
+      { type: 'image', path: '/extracurriculars/volleyball/national_pic_new.jpg', caption: 'National Volleyball Team' },
+      { type: 'image', path: '/extracurriculars/volleyball/national_win_new.jpg', caption: 'Championship Win' },
     ],
   },
   {
@@ -99,7 +97,7 @@ export const extracurriculars: Extracurricular[] = [
       "Collaborated with a diverse cohort of young leaders from across the globe",
     ],
     media: [
-      { type: 'image', path: '/extracurriculars/gyel/gyel_pic.jpg', caption: 'UN GYEL Program' },
+      { type: 'image', path: '/extracurriculars/gyel/gyel_pic_new.jpg', caption: 'UN GYEL Program' },
     ],
   },
   {
@@ -114,7 +112,8 @@ export const extracurriculars: Extracurricular[] = [
       "Made Varsity as a sophomore",
     ],
     media: [
-      { type: 'image', path: '/extracurriculars/volleyball/national_pic.jpg', caption: 'Volleyball Team' },
+      { type: 'image', path: '/extracurriculars/varsity_volleyball/pic1.jpg', caption: 'Varsity Volleyball' },
+      { type: 'image', path: '/extracurriculars/varsity_volleyball/pic2.jpg', caption: 'Team Photo' },
     ],
   },
   {
@@ -138,7 +137,7 @@ export const extracurriculars: Extracurricular[] = [
       "Performed in over 50 concerts in various different locations in California",
     ],
     media: [
-      { type: 'image', path: '/extracurriculars/violin/violin.jpg', caption: 'Violin Performance' },
+      { type: 'image', path: '/extracurriculars/violin/violin_new.jpg', caption: 'Violin Performance' },
     ],
   },
   {
@@ -150,11 +149,9 @@ export const extracurriculars: Extracurricular[] = [
     leadership: "Sergeant at Arms",
     description: "Elected as part of Leadership this year as the 'Sergeant at Arms' position in the cabinet. Participated in many volunteering and service activities, partner with other local organizations.",
     media: [
-      { type: 'image', path: '/extracurriculars/nhs/me_holding_book.jpg', caption: 'NHS Leadership' },
-      { type: 'image', path: '/extracurriculars/nhs/book_picture.jpg', caption: 'NHS Book Collection' },
-      { type: 'image', path: '/extracurriculars/nhs/full_with_people.jpg', caption: 'NHS Team' },
-      { type: 'image', path: '/extracurriculars/nhs/volunteering.jpg', caption: 'Volunteering Activity' },
-      { type: 'image', path: '/extracurriculars/nhs/volunteering2.jpg', caption: 'Community Service' },
+      { type: 'image', path: '/extracurriculars/nhs/me_holding_book_new.jpg', caption: 'NHS Leadership' },
+      { type: 'image', path: '/extracurriculars/nhs/book_picture_new.jpg', caption: 'NHS Book Collection' },
+      { type: 'image', path: '/extracurriculars/nhs/full_with_people_new.jpg', caption: 'NHS Team' },
     ],
   },
   {
@@ -169,12 +166,12 @@ export const extracurriculars: Extracurricular[] = [
       "School finally accepted our club as an 'organization' instead of just an interest group",
     ],
     media: [
-      { type: 'image', path: '/extracurriculars/coding/coding_club.jpg', caption: 'Competitive Programming Club' },
+      { type: 'image', path: '/extracurriculars/coding/coding_club_new.jpg', caption: 'Programming Club' },
     ],
   },
   {
     id: "inspirit-ai",
-    title: "Inspirit AI 'Internship'",
+    title: "Inspirit AI Scholars",
     years: "Summer 23 (8th → 9th)",
     category: "Tech",
     description: "Under the mentorship of a Stanford alumnus, my team of 5 and I learned through the depths of neural networks and machine learning that summer to develop an application using natural language processing and confusion matrices to detect fake news websites.",
@@ -185,9 +182,5 @@ export const extracurriculars: Extracurricular[] = [
       },
     ],
     achievements: ["Best Presentation Award"],
-    media: [
-      { type: 'image', path: '/extracurriculars/coding/hackathon_team.jpg', caption: 'AI Team Project' },
-    ],
   },
 ];
-

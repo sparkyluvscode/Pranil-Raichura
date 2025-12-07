@@ -310,16 +310,6 @@ export default function Hero() {
                         </p>
                     </motion.div>
 
-                    {/* Purpose Line */}
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={!showIntro ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: waveDelays.center + 0.45 }}
-                        className="text-base md:text-lg text-gray-600 mb-4 max-w-lg mx-auto"
-                    >
-                        Projects, research, and context for teachers and RSI reviewers.
-                    </motion.p>
-
                     {/* Quote - De-emphasized */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
