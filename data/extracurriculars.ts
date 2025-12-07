@@ -8,8 +8,11 @@ export interface Extracurricular {
   achievements?: string[];
   links?: { text: string; url: string }[];
   leadership?: string;
-  // TODO: Add imagePath for each extracurricular - Place images in /public/images/
-  imagePath?: string; // e.g., "/images/usaco-coding.jpg"
+  media?: {
+    type: 'image' | 'video';
+    path: string;
+    caption?: string;
+  }[];
 }
 
 export const extracurriculars: Extracurricular[] = [
@@ -27,6 +30,10 @@ export const extracurriculars: Extracurricular[] = [
       "Finalist for the 2024 YoungWonk's National Coding Challenge",
       "Participated in the NASA SpaceApps Hackathon (2 years)",
     ],
+    media: [
+      { type: 'image', path: '/extracurriculars/coding/club_pic.jpg', caption: 'Coding Club' },
+      { type: 'image', path: '/extracurriculars/coding/hackathon_team.jpg', caption: 'Hackathon Team' },
+    ],
   },
   {
     id: "uci-gati",
@@ -38,6 +45,10 @@ export const extracurriculars: Extracurricular[] = [
       "Gained 2 College UCI Credits",
       "Learned about entrepreneurship with lessons from professors",
     ],
+    media: [
+      { type: 'image', path: '/extracurriculars/uci_gati/pic1.jpg', caption: 'UCI GATI Program' },
+      { type: 'image', path: '/extracurriculars/uci_gati/pic2.jpg', caption: 'Final Presentation' },
+    ],
   },
   {
     id: "tech4silvers",
@@ -47,6 +58,10 @@ export const extracurriculars: Extracurricular[] = [
     hoursPerWeek: "2-3 hours/week",
     leadership: "President and Founder",
     description: "Founded a community service organization, which is also a club at GBHS. We educate seniors about technology, cybersecurity, and digital well-being by hosting seminars and Q&A sessions at various senior centers and organizations in the greater Sacramento and Bay Area.",
+    media: [
+      { type: 'image', path: '/extracurriculars/tech4silvers/presentation_pic.jpg', caption: 'Tech4Silvers Presentation' },
+      { type: 'video', path: '/extracurriculars/tech4silvers/presentation_video.mp4', caption: 'Presentation Video' },
+    ],
   },
   {
     id: "national-volleyball",
@@ -67,6 +82,10 @@ export const extracurriculars: Extracurricular[] = [
         url: "https://goldcountrymedia.com/news/261272/aspire-14-boys-earn-bid-to-jr-nationals/",
       },
     ],
+    media: [
+      { type: 'image', path: '/extracurriculars/volleyball/national_pic.jpg', caption: 'National Volleyball Team' },
+      { type: 'image', path: '/extracurriculars/volleyball/national_win.jpg', caption: 'Championship Win' },
+    ],
   },
   {
     id: "un-gyel",
@@ -79,6 +98,9 @@ export const extracurriculars: Extracurricular[] = [
       "Developed practical leadership skills and strategies to address global challenges",
       "Collaborated with a diverse cohort of young leaders from across the globe",
     ],
+    media: [
+      { type: 'image', path: '/extracurriculars/gyel/gyel_pic.jpg', caption: 'UN GYEL Program' },
+    ],
   },
   {
     id: "varsity-volleyball",
@@ -90,6 +112,9 @@ export const extracurriculars: Extracurricular[] = [
       "1st place in JV League in 2024 (D2)",
       "1st place in Stockton Boys' JV-only Tournament",
       "Made Varsity as a sophomore",
+    ],
+    media: [
+      { type: 'image', path: '/extracurriculars/volleyball/national_pic.jpg', caption: 'Volleyball Team' },
     ],
   },
   {
@@ -112,6 +137,9 @@ export const extracurriculars: Extracurricular[] = [
     achievements: [
       "Performed in over 50 concerts in various different locations in California",
     ],
+    media: [
+      { type: 'image', path: '/extracurriculars/violin/violin.jpg', caption: 'Violin Performance' },
+    ],
   },
   {
     id: "nhs",
@@ -121,6 +149,13 @@ export const extracurriculars: Extracurricular[] = [
     hoursPerWeek: "30 mins per week",
     leadership: "Sergeant at Arms",
     description: "Elected as part of Leadership this year as the 'Sergeant at Arms' position in the cabinet. Participated in many volunteering and service activities, partner with other local organizations.",
+    media: [
+      { type: 'image', path: '/extracurriculars/nhs/me_holding_book.jpg', caption: 'NHS Leadership' },
+      { type: 'image', path: '/extracurriculars/nhs/book_picture.jpg', caption: 'NHS Book Collection' },
+      { type: 'image', path: '/extracurriculars/nhs/full_with_people.jpg', caption: 'NHS Team' },
+      { type: 'image', path: '/extracurriculars/nhs/volunteering.jpg', caption: 'Volunteering Activity' },
+      { type: 'image', path: '/extracurriculars/nhs/volunteering2.jpg', caption: 'Community Service' },
+    ],
   },
   {
     id: "competitive-programming-club",
@@ -128,10 +163,13 @@ export const extracurriculars: Extracurricular[] = [
     years: "9th, 10th, 11th Grade (Leadership)",
     category: "Tech",
     leadership: "Vice President",
-    description: "As VP, I've single handedly transformed our club from hosting a single annual hackathon at the end of the year and meeting up every week to do one practice problem and just talk--to participating in multiple national competitions (USACO, NASA SpaceApps, Cong. App Challenge, Berkeley CALICO).",
+    description: "As VP, I helped transform our club from hosting a single end‑of‑year hackathon to regularly competing in USACO, NASA SpaceApps, Congressional App Challenge, and Berkeley CALICO.",
     achievements: [
       "One of our teams won the local NASA SpaceApps competition",
       "School finally accepted our club as an 'organization' instead of just an interest group",
+    ],
+    media: [
+      { type: 'image', path: '/extracurriculars/coding/coding_club.jpg', caption: 'Competitive Programming Club' },
     ],
   },
   {
@@ -147,6 +185,9 @@ export const extracurriculars: Extracurricular[] = [
       },
     ],
     achievements: ["Best Presentation Award"],
+    media: [
+      { type: 'image', path: '/extracurriculars/coding/hackathon_team.jpg', caption: 'AI Team Project' },
+    ],
   },
 ];
 

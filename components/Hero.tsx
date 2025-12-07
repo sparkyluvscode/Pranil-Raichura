@@ -1,205 +1,393 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { academicStats } from "@/data/academic";
-
-function AnimatedCounter({ value, decimals = 2, suffix = "" }: { value: number; decimals?: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const duration = 2000;
-    const steps = 60;
-    const increment = value / steps;
-    let current = 0;
-
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(current);
-      }
-    }, duration / steps);
-
-    return () => clearInterval(timer);
-  }, [value]);
-
-  return <span>{count.toFixed(decimals)}{suffix}</span>;
-}
 
 export default function Hero() {
-  return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-purple/10">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-20 left-20 w-72 h-72 bg-primary-200 rounded-full mix-blend-multiply filter blur-xl opacity-30"
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute top-40 right-20 w-72 h-72 bg-accent-purple/30 rounded-full mix-blend-multiply filter blur-xl opacity-30"
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -100, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 left-1/2 w-72 h-72 bg-accent-orange/20 rounded-full mix-blend-multiply filter blur-xl opacity-30"
-          animate={{
-            scale: [1, 1.1, 1],
-            x: [0, 50, 0],
-            y: [0, -100, 0],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000003_1px,transparent_1px),linear-gradient(to_bottom,#00000003_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-      </div>
+    const [showIntro, setShowIntro] = useState(true);
+    const [typedText, setTypedText] = useState("");
+    const [showCursor, setShowCursor] = useState(true);
+    const fullText = "Who am I?";
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
-        >
-          <div className="flex justify-center mb-8">
+    // Typing animation effect
+    useEffect(() => {
+        if (showIntro) {
+            let currentIndex = 0;
+            const typingInterval = setInterval(() => {
+                if (currentIndex <= fullText.length) {
+                    setTypedText(fullText.slice(0, currentIndex));
+                    currentIndex++;
+                } else {
+                    clearInterval(typingInterval);
+                    // Wait a moment after typing completes, then reveal
+                    setTimeout(() => {
+                        setShowIntro(false);
+                    }, 800);
+                }
+            }, 120);
+
+            return () => clearInterval(typingInterval);
+        }
+    }, [showIntro]);
+
+    // Blinking cursor effect
+    useEffect(() => {
+        const cursorInterval = setInterval(() => {
+            setShowCursor((prev) => !prev);
+        }, 530);
+        return () => clearInterval(cursorInterval);
+    }, []);
+
+    // Wave animation timing (left → center → right)
+    const waveDelays = {
+        left: 0.1,      // Left photos appear first
+        center: 0.5,    // Center content appears second
+        right: 0.9,     // Right photos appear last
+    };
+
+    return (
+        <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-purple/10">
+            {/* Intro Screen - "Who am I?" typing animation */}
+            <AnimatePresence>
+                {showIntro && (
+                    <motion.div
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0, scale: 1.1 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="absolute inset-0 z-50 flex items-center justify-center bg-white"
+                    >
+                        <div className="text-center">
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900">
+                                {typedText}
+                                <span
+                                    className={`inline-block w-1 h-12 md:h-16 lg:h-20 bg-primary-600 ml-2 ${showCursor ? "opacity-100" : "opacity-0"
+                                        }`}
+                                    style={{ verticalAlign: "middle" }}
+                                />
+                            </h1>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Main Content - appears after intro with wave effect */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              whileHover={{ scale: 1.05 }}
-              className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white ring-4 ring-primary-100"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: showIntro ? 0 : 1 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0"
             >
-              {/* TODO: Replace with your profile picture */}
-              {/* Add your image to /public/profile-picture.jpg and uncomment below */}
-              {/* <Image 
-                src="/profile-picture.jpg" 
-                alt="Pranil Raichura" 
-                fill 
-                className="object-cover"
-              /> */}
-              <div className="w-full h-full bg-gradient-to-br from-primary-200 via-accent-purple/30 to-accent-orange/20 flex items-center justify-center">
-                <span className="text-gray-500 text-sm font-medium">Profile Picture</span>
-              </div>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-primary-400/20 to-transparent"
-                animate={{ opacity: [0.5, 0.8, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
+                {/* Photo Background */}
+                <div className="absolute inset-0 overflow-hidden">
+                    {/* LEFT SIDE PHOTOS - Wave starts here */}
+
+                    {/* Young Me Photo - Top Left */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -80, scale: 0.9 }}
+                        animate={!showIntro ? { opacity: 1, x: 0, scale: 1, rotate: -8 } : {}}
+                        transition={{ type: "spring", stiffness: 60, damping: 15, delay: waveDelays.left }}
+                        whileHover={{ scale: 1.05, rotate: -5, transition: { duration: 0.3 } }}
+                        className="absolute top-8 left-8 md:top-12 md:left-12 w-48 h-48 md:w-64 md:h-80 lg:w-80 lg:h-96"
+                    >
+                        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/80">
+                            <Image
+                                src="/young-me.jpg"
+                                alt="Young Pranil"
+                                fill
+                                className="object-cover object-center"
+                                style={{ filter: "brightness(0.9)" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary-400/20 to-transparent" />
+                        </div>
+                    </motion.div>
+
+                    {/* Young Volleyball Photo - Bottom Left */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -80, scale: 0.9 }}
+                        animate={!showIntro ? { opacity: 1, x: 0, scale: 1, rotate: 6 } : {}}
+                        transition={{ type: "spring", stiffness: 60, damping: 15, delay: waveDelays.left + 0.1 }}
+                        whileHover={{ scale: 1.05, rotate: 8, transition: { duration: 0.3 } }}
+                        className="absolute bottom-24 left-8 md:bottom-28 md:left-12 w-48 h-48 md:w-64 md:h-80 lg:w-80 lg:h-96"
+                    >
+                        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/80">
+                            <Image
+                                src="/volleyball-young.jpg"
+                                alt="Young volleyball player"
+                                fill
+                                className="object-cover object-center"
+                                style={{ filter: "brightness(0.9)" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-accent-orange/20 to-transparent" />
+                        </div>
+                    </motion.div>
+
+                    {/* 2008 Label - Left Timeline */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={!showIntro ? { opacity: 1, x: 0 } : {}}
+                        transition={{ delay: waveDelays.left + 0.2, duration: 0.6 }}
+                        className="absolute bottom-8 left-8 text-left z-20"
+                    >
+                        <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800/80">
+                            2008
+                        </span>
+                        <p className="text-sm text-gray-500 mt-1">The Beginning</p>
+                    </motion.div>
+
+                    {/* CENTER CONTENT - Wave middle */}
+
+                    {/* Violin Orchestra Photo - Left-Center */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                        animate={!showIntro ? { opacity: 1, y: 0, scale: 1, rotate: 3 } : {}}
+                        transition={{ type: "spring", stiffness: 60, damping: 12, delay: waveDelays.center }}
+                        whileHover={{ scale: 1.08, rotate: 6, y: -5, transition: { duration: 0.3 } }}
+                        className="absolute top-[2%] md:top-[4%] left-[14%] md:left-[23%] lg:left-[28%] w-[221px] h-[294px] md:w-[258px] md:h-[331px] lg:w-[294px] lg:h-[405px]"
+                    >
+                        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/80">
+                            <Image
+                                src="/violin-orchestra.jpg"
+                                alt="Orchestra violin performance"
+                                fill
+                                className="object-cover object-center"
+                                style={{ filter: "brightness(0.95)" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-accent-orange/15 to-transparent" />
+                        </div>
+                    </motion.div>
+
+                    {/* HPE Codewars Photo - Top Center */}
+                    <motion.div
+                        initial={{ opacity: 0, y: -50, scale: 0.9 }}
+                        animate={!showIntro ? { opacity: 1, y: 0, scale: 1, rotate: -3 } : {}}
+                        transition={{ type: "spring", stiffness: 60, damping: 12, delay: waveDelays.center + 0.15 }}
+                        whileHover={{ scale: 1.08, rotate: 0, y: -5, transition: { duration: 0.3 } }}
+                        className="absolute top-4 left-1/2 -translate-x-1/2 w-56 h-56 md:w-72 md:h-96 lg:w-96 lg:h-[28rem]"
+                    >
+                        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/80">
+                            <Image
+                                src="/codewars-hpe.jpg"
+                                alt="HPE Codewars 2nd Place"
+                                fill
+                                className="object-cover object-center"
+                                style={{ filter: "brightness(0.95)" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/15 to-transparent" />
+                        </div>
+                    </motion.div>
+
+                    {/* RIGHT SIDE PHOTOS - Wave ends here */}
+
+                    {/* Recent Team Photo - Top Right */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 80, scale: 0.9 }}
+                        animate={!showIntro ? { opacity: 1, x: 0, scale: 1, rotate: 8 } : {}}
+                        transition={{ type: "spring", stiffness: 60, damping: 15, delay: waveDelays.right }}
+                        whileHover={{ scale: 1.05, rotate: 10, transition: { duration: 0.3 } }}
+                        className="absolute top-8 right-8 md:top-12 md:right-12 w-48 h-48 md:w-64 md:h-80 lg:w-80 lg:h-96"
+                    >
+                        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/80">
+                            <Image
+                                src="/volleyball-team-recent.jpg"
+                                alt="Granite Bay Grizzlies team celebration"
+                                fill
+                                className="object-cover object-center"
+                                style={{ filter: "brightness(0.95)" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-accent-purple/15 to-transparent" />
+                        </div>
+                    </motion.div>
+
+                    {/* Recent Team Huddle - Bottom Right */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 80, scale: 0.9 }}
+                        animate={!showIntro ? { opacity: 1, x: 0, scale: 1, rotate: -6 } : {}}
+                        transition={{ type: "spring", stiffness: 60, damping: 15, delay: waveDelays.right + 0.1 }}
+                        whileHover={{ scale: 1.05, rotate: -4, transition: { duration: 0.3 } }}
+                        className="absolute bottom-24 right-8 md:bottom-28 md:right-12 w-48 h-48 md:w-64 md:h-80 lg:w-80 lg:h-96"
+                    >
+                        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/80">
+                            <Image
+                                src="/volleyball-team-huddle.jpg"
+                                alt="Granite Bay team huddle"
+                                fill
+                                className="object-cover"
+                                style={{ filter: "brightness(0.95)", objectPosition: "70% top" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/15 to-transparent" />
+                        </div>
+                    </motion.div>
+
+                    {/* 2025 Label - Right Timeline */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={!showIntro ? { opacity: 1, x: 0 } : {}}
+                        transition={{ delay: waveDelays.right + 0.2, duration: 0.6 }}
+                        className="absolute bottom-8 right-8 text-right z-20"
+                    >
+                        <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800/80">
+                            2025
+                        </span>
+                        <p className="text-sm text-gray-500 mt-1">Present Day</p>
+                    </motion.div>
+
+                    {/* Grid pattern overlay */}
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000003_1px,transparent_1px),linear-gradient(to_bottom,#00000003_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
+
+                    {/* Subtle white overlay to ensure text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-white/35 to-white/25"></div>
+                </div>
             </motion.div>
-          </div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-gray-900 via-primary-600 to-accent-purple bg-clip-text text-transparent mb-4"
-          >
-            Pranil Raichura
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl lg:text-3xl text-gray-600 mb-4 font-medium"
-          >
-            Junior at Granite Bay High School
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-lg md:text-xl text-gray-500 mb-16 max-w-2xl mx-auto"
-          >
-            Applying to Research Science Institute @ MIT
-          </motion.p>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto"
-        >
-          <motion.div
-            whileHover={{ scale: 1.05, y: -8, rotate: 1 }}
-            className="bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-gray-200/50 hover:shadow-2xl transition-shadow"
-          >
-            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent mb-3">
-              <AnimatedCounter value={academicStats.weightedGPA} />
-            </div>
-            <div className="text-base md:text-lg text-gray-600 font-medium">Weighted GPA</div>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ scale: 1.05, y: -8, rotate: -1 }}
-            className="bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-gray-200/50 hover:shadow-2xl transition-shadow"
-          >
-            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-accent-purple to-purple-400 bg-clip-text text-transparent mb-3">
-              {academicStats.classRank}/{academicStats.classSize}
-            </div>
-            <div className="text-base md:text-lg text-gray-600 font-medium">Class Rank</div>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ scale: 1.05, y: -8, rotate: 1 }}
-            className="bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-gray-200/50 hover:shadow-2xl transition-shadow"
-          >
-            <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-accent-orange to-orange-400 bg-clip-text text-transparent mb-3">
-              <AnimatedCounter value={academicStats.gpa10to12} />
-            </div>
-            <div className="text-base md:text-lg text-gray-600 font-medium">10-12 W GPA</div>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="mt-16"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="text-gray-400"
-          >
-            <svg
-              className="w-6 h-6 mx-auto"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+            {/* Center Content - Wave middle timing */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: showIntro ? 0 : 1 }}
+                transition={{ duration: 0.3, delay: waveDelays.center }}
+                className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
             >
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={!showIntro ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: waveDelays.center + 0.1 }}
+                    className="mb-8"
+                >
+                    {/* Profile Picture */}
+                    <div className="flex justify-center mb-8">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={!showIntro ? { opacity: 1, scale: 1 } : {}}
+                            transition={{ type: "spring", stiffness: 80, damping: 15, delay: waveDelays.center + 0.2 }}
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white ring-4 ring-primary-100"
+                        >
+                            <Image
+                                src="/profile-picture.png"
+                                alt="Pranil Raichura"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-br from-primary-400/20 to-transparent"
+                                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                            />
+                        </motion.div>
+                    </div>
 
+                    {/* Name */}
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={!showIntro ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.5, delay: waveDelays.center + 0.3 }}
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 inline-block px-8 py-4 rounded-3xl bg-white/20 backdrop-blur-xl border border-white/30 shadow-2xl"
+                        style={{
+                            background: 'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%)',
+                            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15), inset 0 0 20px rgba(255,255,255,0.1)'
+                        }}
+                    >
+                        <span className="bg-gradient-to-r from-gray-900 via-primary-600 to-accent-purple bg-clip-text text-transparent">
+                            Pranil Raichura
+                        </span>
+                    </motion.h1>
+
+                    {/* Subtitle */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={!showIntro ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.5, delay: waveDelays.center + 0.4 }}
+                        whileHover={{ scale: 1.05 }}
+                        className="inline-block px-6 py-3 rounded-2xl bg-white/20 backdrop-blur-xl border border-white/30 shadow-xl mb-4"
+                        style={{
+                            background: 'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%)',
+                            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.1), inset 0 0 15px rgba(255,255,255,0.1)'
+                        }}
+                    >
+                        <p className="text-xl md:text-2xl lg:text-3xl text-gray-800 font-semibold">
+                            Junior at Granite Bay High School
+                        </p>
+                    </motion.div>
+                    <br />
+
+                    {/* Quote */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={!showIntro ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.5, delay: waveDelays.center + 0.5 }}
+                        className="mb-6"
+                    >
+                        <p className="text-2xl md:text-3xl lg:text-4xl italic text-gray-700 font-light">
+                            "A picture is worth 1000 words"
+                        </p>
+                    </motion.div>
+
+                    {/* At a Glance - For Teachers & Recommenders */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={!showIntro ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.5, delay: waveDelays.center + 0.55 }}
+                        className="mb-6 px-6 py-4 rounded-2xl bg-white/40 backdrop-blur-lg border border-white/50 shadow-lg max-w-xl mx-auto text-left"
+                    >
+                        <p className="text-sm font-semibold text-slate-600 uppercase tracking-wide mb-3 text-center">At a Glance</p>
+                        <ul className="space-y-2 text-sm md:text-base text-slate-700">
+                            <li className="flex items-start gap-2">
+                                <span className="text-slate-500 mt-0.5">•</span>
+                                <span><strong>Academics:</strong> 4.0 UW, 4.53 W GPA, rank 1/502, APs in CS, math, physics, stats</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-slate-500 mt-0.5">•</span>
+                                <span><strong>Research & CS:</strong> NASA Space Apps Global Nominee, co‑author on "Beyond Euler" XGBoost buckling preprint, ASD serious game with OpenCV breathing detection</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-slate-500 mt-0.5">•</span>
+                                <span><strong>Service & Leadership:</strong> Founder of Tech4Silvers, NHS leadership (Sergeant at Arms), UN GYEL participant, national‑level volleyball</span>
+                            </li>
+                        </ul>
+                    </motion.div>
+
+                    {/* CTA Button */}
+                    <motion.a
+                        href="#portfolio"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={!showIntro ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.5, delay: waveDelays.center + 0.65 }}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="inline-block px-8 py-4 rounded-full bg-slate-800 text-white font-semibold text-lg shadow-xl hover:bg-slate-700 hover:shadow-2xl transition-all duration-300"
+                    >
+                        View Projects & Impact
+                    </motion.a>
+                </motion.div>
+
+                {/* Scroll indicator */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={!showIntro ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.5, delay: waveDelays.right + 0.3 }}
+                    className="mt-8"
+                >
+                    <motion.div
+                        animate={{ y: [0, 10, 0] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="text-gray-400"
+                    >
+                        <svg
+                            className="w-6 h-6 mx-auto"
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                        </svg>
+                    </motion.div>
+                </motion.div>
+            </motion.div>
+        </section>
+    );
+}

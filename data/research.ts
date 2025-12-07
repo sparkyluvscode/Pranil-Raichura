@@ -1,52 +1,59 @@
 export const researchProjects = [
   {
-    id: "rsi",
-    title: "Research Science Institute (RSI)",
-    years: "11th Grade (Applying)",
-    organization: "MIT",
-    description: "The Research Science Institute (RSI) is a highly selective summer program at MIT that brings together the world's most accomplished high school students to conduct cutting-edge research. I am applying to this prestigious program to further my research interests in AI, machine learning, and their applications in solving real-world problems.",
-    // TODO: Add RSI image - Place in /public/images/rsi-program.jpg
-    imagePath: "/images/rsi-program.jpg", // Update this path when image is added
-  },
-  {
     id: "ai-game-development",
-    title: "AI x Game Development Research Project",
+    title: "Computer Vision Powered Serious Game for ASD",
+    role: "Lead Developer & Researcher",
+    tech: "Python, C#",
     years: "9th, 10th, 11th Grade",
     hoursPerWeek: "4-5 hours/week",
     mentors: [
       {
+        name: "Dr. Nouchine Hadjikhani",
+        affiliation: "Harvard Medical School",
+      },
+      {
         name: "Nolan Miranda, M.S.",
         affiliation: "Stanford University",
       },
-      {
-        name: "Nouchine Hadjikhani, MD, PhD",
-        affiliation: "Harvard Medical School",
-      },
     ],
     organization: "Polygence",
-    // TODO: Add AI Game Development image - Place in /public/images/ai-game-dev.jpg
-    imagePath: "/images/ai-game-dev.jpg", // Update this path when image is added
-    description: "I am developing a virtual garden serious game using pixel art, resource management, computer vision, and incremental progression. I will have children with ASD, ages 12-16, play a 15-20 minute session per day for 3 days. At the beginning and end of the entire experiment, there will be a pre- and post-survey (respectively) assessing the participant's emotional state. I hope to see an improvement in their child's emotional regulation patterns as a result of the game's research-informed design.",
-    inspiration: "I remember one of the most memorable periods of my life, starting from the moment I was in elementary school; afternoons were filled with joy, riding a scooter to my best friend's house to play Minecraft. I didn't notice anything unusual about him at the time. He was energetic but often upset after losing in the game. I later learned he was on the autism spectrum. While I cherished our time together, he was bullied and often lonely. Gradually, he grew distant, and one day, he was just gone; only a moving truck remained in the once lively driveway. This experience stayed with me, shaping my values of treating neurodivergent peers with respect and compassion.",
-    studyLocation: "Meristem Autism Center",
+    description: "Designed and published a garden-themed, AI-assisted resource-management game with integrated guided breathing sessions for adolescents (12–16) with Autism Spectrum Disorder (ASD), aimed at improving emotional regulation and reducing state anxiety.",
+    highlights: [
+      "Conducting an IRB-aligned study with HRV and STAI-State evaluations across weekly gameplay",
+      "Authoring research paper with Dr. Nouchine Hadjikhani and Nolan Miranda, M.S.",
+    ],
   },
   {
     id: "ml-structural-engineering",
-    title: "Machine Learning x Structural Engineering Research",
+    title: "Machine Learning for Structural Engineering",
+    role: "Research Author",
+    tech: "Python (XGBoost), Scikit-Learn",
     years: "10th Summer, 11th Grade",
     hoursPerWeek: "6 hours/week",
     organization: "Johns Hopkins Explore Engineering Innovation",
-    programDetails: "Learned and completed activities in civil, chemical, electrical/computer, and mechanical engineering, and materials science. Passed the class with a grade of 'Satisfactory' and received 3 JHU College credits.",
     mentor: {
-      name: "Electrical Engineering PhD",
+      name: "Abdiel Rivera, PhD",
       affiliation: "UConn, Associate Professor at Polytechnic University, Orlando",
     },
-    paperTitle: "Beyond Euler: An Explainable Machine Learning Framework for Predicting and Interpreting Buckling Instabilities in Non-Ideal Materials",
-    preprintLink: "https://www.researchsquare.com/article/rs-7668574/v1",
-    status: "In the process of journal submissions",
-    // TODO: Add ML Engineering image - Place in /public/images/ml-engineering.jpg
-    imagePath: "/images/ml-engineering.jpg", // Update this path when image is added
-    description: "I am writing a research paper using the experimental framework from the EEI program, extending one of the labs we did in the summer program and combining my passion for computer science.",
+    paperTitle: "Beyond Euler: An Explainable ML Framework for Predicting Buckling Instabilities in Non-Ideal Materials",
+    preprintLink: "https://www.researchgate.net/publication/395824075_Beyond_Euler_An_Explainable_Machine_Learning_Framework_for_Predicting_and_Interpreting_Buckling_Instabilities_in_Non-Ideal_Materials",
+    status: "Preprint published; under review for journal submission",
+    description: "Authored research paper under UConn PhD mentorship; preprint published on ResearchGate.",
+    highlights: [
+      "Developed an interpretable ML model (XGBoost) with SHAP analysis to predict structural buckling behavior",
+      "Extended experimental framework from JHU EEI program, combining engineering and computer science",
+    ],
+  },
+  {
+    id: "clearpolicy",
+    title: "ClearPolicy.org",
+    role: "Founder",
+    tech: "TypeScript, React, Prisma, Tailwind, OpenStates & Congress.gov APIs",
+    years: "11th Grade",
+    description: "Built & shipped a full-stack web app that transforms confusing ballot measures into clear summaries with non-biased sources you can check. Gathering users on the waitlist prior to public release.",
+    highlights: [
+      "Full-stack development from conception to deployment",
+      "Integrates government APIs for real-time legislative data",
+    ],
   },
 ];
-

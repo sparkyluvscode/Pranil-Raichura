@@ -1,24 +1,23 @@
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import AcademicAchievements from "@/components/AcademicAchievements";
-import ResearchProjects from "@/components/ResearchProjects";
-import Extracurriculars from "@/components/Extracurriculars";
-import Awards from "@/components/Awards";
-import MediaGallery from "@/components/MediaGallery";
 import Navigation from "@/components/Navigation";
+import StorySection from "@/components/StorySection";
+import Portfolio from "@/components/Portfolio";
+import ResearchProjects from "@/components/ResearchProjects";
+import AcademicAchievements from "@/components/AcademicAchievements";
+import Extracurriculars from "@/components/Extracurriculars";
+import BackToTop from "@/components/BackToTop";
 
 export default function Home() {
-  return (
-    <main className="min-h-screen relative z-10">
-      <Navigation />
-      <Hero />
-      <About />
-      <AcademicAchievements />
-      <ResearchProjects />
-      <Extracurriculars />
-      <Awards />
-      <MediaGallery />
-    </main>
-  );
+    return (
+        <main className="min-h-screen">
+            <Navigation />
+            <Hero />
+            <StorySection />
+            <Portfolio />
+            <ResearchProjects />
+            <AcademicAchievements />
+            <Extracurriculars />
+            <BackToTop />
+        </main>
+    );
 }
-

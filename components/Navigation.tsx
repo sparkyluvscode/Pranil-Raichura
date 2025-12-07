@@ -4,14 +4,17 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const navItems = [
   { name: "About", href: "#about" },
   { name: "Academic", href: "#academic" },
   { name: "Research", href: "#research" },
+  { name: "Portfolio", href: "#portfolio" },
   { name: "Extracurriculars", href: "#extracurriculars" },
   { name: "Awards", href: "#awards" },
   { name: "Media", href: "#media" },
+  { name: "My Story", href: "/story" },
   { name: "Recommendation", href: "/recommendation" },
 ];
 
@@ -27,7 +30,7 @@ export default function Navigation() {
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
+
       // Update active section based on scroll position
       const sections = navItems
         .filter(item => item.href.startsWith("#"))
@@ -65,11 +68,10 @@ export default function Navigation() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-[10000] transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-100"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-[10000] transition-all duration-300 ${isScrolled
+        ? "bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-100"
+        : "bg-transparent"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -85,10 +87,10 @@ export default function Navigation() {
           </Link>
           <div className="hidden md:flex space-x-1">
             {navItems.map((item) => {
-              const isActive = item.href.startsWith("#") 
+              const isActive = item.href.startsWith("#")
                 ? activeSection === item.href.substring(1)
                 : pathname === item.href;
-              
+
               if (item.href.startsWith("#")) {
                 return (
                   <motion.button
@@ -96,11 +98,10 @@ export default function Navigation() {
                     onClick={() => handleNavClick(item.href)}
                     whileHover={{ y: -2 }}
                     whileTap={{ y: 0 }}
-                    className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg ${
-                      isActive
-                        ? "text-primary-600 bg-primary-50"
-                        : "text-gray-700 hover:text-primary-600 hover:bg-gray-50"
-                    }`}
+                    className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg ${isActive
+                      ? "text-primary-600 bg-primary-50"
+                      : "text-gray-700 hover:text-primary-600 hover:bg-gray-50"
+                      }`}
                   >
                     {item.name}
                   </motion.button>
@@ -112,11 +113,10 @@ export default function Navigation() {
                       onClick={() => handleNavClick(item.href)}
                       whileHover={{ y: -2 }}
                       whileTap={{ y: 0 }}
-                      className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg ${
-                        isActive
-                          ? "text-primary-600 bg-primary-50"
-                          : "text-gray-700 hover:text-primary-600 hover:bg-gray-50"
-                      }`}
+                      className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg ${isActive
+                        ? "text-primary-600 bg-primary-50"
+                        : "text-gray-700 hover:text-primary-600 hover:bg-gray-50"
+                        }`}
                     >
                       {item.name}
                     </motion.button>
@@ -125,6 +125,7 @@ export default function Navigation() {
               }
             })}
           </div>
+
           <motion.button
             className="md:hidden p-2 text-gray-700 hover:text-primary-600 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -163,10 +164,10 @@ export default function Navigation() {
           >
             <div className="px-4 py-4 space-y-2">
               {navItems.map((item, index) => {
-                const isActive = item.href.startsWith("#") 
+                const isActive = item.href.startsWith("#")
                   ? activeSection === item.href.substring(1)
                   : pathname === item.href;
-                
+
                 if (item.href.startsWith("#")) {
                   return (
                     <motion.button
@@ -175,11 +176,10 @@ export default function Navigation() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
                       onClick={() => handleNavClick(item.href)}
-                      className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
-                        isActive
-                          ? "text-primary-600 bg-primary-50"
-                          : "text-gray-700 hover:text-primary-600 hover:bg-gray-50"
-                      }`}
+                      className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 ${isActive
+                        ? "text-primary-600 bg-primary-50"
+                        : "text-gray-700 hover:text-primary-600 hover:bg-gray-50"
+                        }`}
                     >
                       {item.name}
                     </motion.button>
@@ -192,11 +192,10 @@ export default function Navigation() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.05 }}
                         onClick={() => handleNavClick(item.href)}
-                        className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
-                          isActive
-                            ? "text-primary-600 bg-primary-50"
-                            : "text-gray-700 hover:text-primary-600 hover:bg-gray-50"
-                        }`}
+                        className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 ${isActive
+                          ? "text-primary-600 bg-primary-50"
+                          : "text-gray-700 hover:text-primary-600 hover:bg-gray-50"
+                          }`}
                       >
                         {item.name}
                       </motion.button>
