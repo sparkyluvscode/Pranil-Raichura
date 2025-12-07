@@ -7,14 +7,11 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 const navItems = [
-  { name: "About", href: "#about" },
-  { name: "Academic", href: "#academic" },
+  { name: "Story", href: "#story" },
+  { name: "Projects", href: "#portfolio" },
   { name: "Research", href: "#research" },
-  { name: "Portfolio", href: "#portfolio" },
-  { name: "Extracurriculars", href: "#extracurriculars" },
-  { name: "Awards", href: "#awards" },
-  { name: "Media", href: "#media" },
-  { name: "My Story", href: "/story" },
+  { name: "Academics", href: "#academic" },
+  { name: "Leadership", href: "#extracurriculars" },
   { name: "Recommendation", href: "/recommendation" },
 ];
 

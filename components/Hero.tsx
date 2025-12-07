@@ -299,28 +299,36 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={!showIntro ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.5, delay: waveDelays.center + 0.4 }}
-                        whileHover={{ scale: 1.05 }}
-                        className="inline-block px-6 py-3 rounded-2xl bg-white/20 backdrop-blur-xl border border-white/30 shadow-xl mb-4"
+                        className="inline-block px-6 py-3 rounded-2xl bg-white/20 backdrop-blur-xl border border-white/30 shadow-xl mb-3"
                         style={{
                             background: 'linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%)',
                             boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.1), inset 0 0 15px rgba(255,255,255,0.1)'
                         }}
                     >
-                        <p className="text-xl md:text-2xl lg:text-3xl text-gray-800 font-semibold">
-                            Junior at Granite Bay High School
+                        <p className="text-lg md:text-xl lg:text-2xl text-gray-800 font-semibold">
+                            Junior · Research & CS · Granite Bay High School
                         </p>
                     </motion.div>
-                    <br />
 
-                    {/* Quote */}
+                    {/* Purpose Line */}
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={!showIntro ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.5, delay: waveDelays.center + 0.45 }}
+                        className="text-base md:text-lg text-gray-600 mb-4 max-w-lg mx-auto"
+                    >
+                        Projects, research, and context for teachers and RSI reviewers.
+                    </motion.p>
+
+                    {/* Quote - De-emphasized */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={!showIntro ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.5, delay: waveDelays.center + 0.5 }}
-                        className="mb-6"
+                        className="mb-5"
                     >
-                        <p className="text-2xl md:text-3xl lg:text-4xl italic text-gray-700 font-light">
-                            "A picture is worth 1000 words"
+                        <p className="text-lg md:text-xl italic text-gray-500 font-light">
+                            &quot;A picture is worth 1000 words&quot;
                         </p>
                     </motion.div>
 
@@ -335,15 +343,15 @@ export default function Hero() {
                         <ul className="space-y-2 text-sm md:text-base text-slate-700">
                             <li className="flex items-start gap-2">
                                 <span className="text-slate-500 mt-0.5">•</span>
-                                <span><strong>Academics:</strong> 4.0 UW, 4.53 W GPA, rank 1/502, APs in CS, math, physics, stats</span>
+                                <span><strong>Academics:</strong> 4.0 UW / 4.53 W GPA, rank 1/502; AP CS A & Principles, AP Calculus AB/BC, AP Physics 1, AP Statistics</span>
                             </li>
                             <li className="flex items-start gap-2">
                                 <span className="text-slate-500 mt-0.5">•</span>
-                                <span><strong>Research & CS:</strong> NASA Space Apps Global Nominee, co‑author on "Beyond Euler" XGBoost buckling preprint, ASD serious game with OpenCV breathing detection</span>
+                                <span><strong>Research & CS:</strong> NASA Space Apps Global Nominee 2025, &quot;Beyond Euler&quot; physics-informed ML preprint (XGBoost, SHAP), ASD serious game with OpenCV breathing detection</span>
                             </li>
                             <li className="flex items-start gap-2">
                                 <span className="text-slate-500 mt-0.5">•</span>
-                                <span><strong>Service & Leadership:</strong> Founder of Tech4Silvers, NHS leadership (Sergeant at Arms), UN GYEL participant, national‑level volleyball</span>
+                                <span><strong>Service & Leadership:</strong> Founder of Tech4Silvers, NHS Sergeant at Arms, UN GYEL participant, USAV national-level volleyball</span>
                             </li>
                         </ul>
                     </motion.div>

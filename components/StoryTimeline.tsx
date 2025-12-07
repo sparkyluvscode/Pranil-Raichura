@@ -111,7 +111,7 @@ export default function StoryTimeline() {
                     className="text-center mb-16"
                 >
                     <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                        What's My Story?
+                        What&apos;s My Story?
                     </h1>
                     <div className="w-24 h-1 bg-primary-600 mx-auto mb-6"></div>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">

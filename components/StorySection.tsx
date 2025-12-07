@@ -1,21 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface TimelineEvent {
     id: string;
     title: string;
-    phase: string;
     content: string[];
-    year?: string;
 }
 
 const timelineEvents: TimelineEvent[] = [
     {
         id: "early-pressure",
         title: "Early Pressure",
-        phase: "Beginning",
-        year: "Fifth Grade",
         content: [
             "The glass wall behind me held a crowd of spectators, but I only saw one face: Samyak's. Fifth grade, first squash tournament. Each round I lost, that pressure grew louder—the belief that when it really mattered, I would fall short. After the final point, I locked myself in the bathroom and cried for twenty minutes, too ashamed to walk out.",
             "I assumed volleyball would fix things—a team sport would spread pressure across six players. That theory lasted until my first season at one of the Bay Area's most competitive clubs. A serve came straight at me and I whiffed it completely. I started hoping to stay on the bench, where mistakes were impossible.",
@@ -24,8 +21,6 @@ const timelineEvents: TimelineEvent[] = [
     {
         id: "pattern-continues",
         title: "The Pattern Follows",
-        phase: "Summer Program",
-        year: "UCI GSET",
         content: [
             "At the UCI GSET summer research program, after flying directly from Volleyball Nationals, I froze during our final presentation. My teammates continued without missing a beat while I stood in silence under the stage lights.",
             "It became what psychologists call a flashbulb memory: vivid, persistent, humiliating. For a long time, it felt like proof of a fixed truth—I couldn't perform when it mattered.",
@@ -34,7 +29,6 @@ const timelineEvents: TimelineEvent[] = [
     {
         id: "finding-purpose",
         title: "Finding Purpose",
-        phase: "Transformation",
         content: [
             "What changed was not the existence of pressure, but my relationship to it. I began developing a game to help autistic children regulate emotions, inspired by a childhood friend who treated me with kindness when I was the awkward kid who didn't fit in.",
             "I implemented OpenCV-based computer vision to detect diaphragmatic breathing from a webcam, distinguishing shallow chest breaths from deeper belly breaths. Nights disappeared into debugging—but the pressure felt different. It wasn't about proving I was enough; it was about building something that mattered to someone else.",
@@ -43,7 +37,6 @@ const timelineEvents: TimelineEvent[] = [
     {
         id: "testing-hypothesis",
         title: "Testing the Hypothesis",
-        phase: "Tech4Silvers",
         content: [
             "Maybe pressure itself wasn't the enemy—maybe the problem was why I was showing up. To test that, I walked into my first Tech4Silvers workshop, facing a room of older adults learning digital skills.",
             "Then a seventy-year-old woman successfully placed her first video call to her grandson. Watching her face light up, the pressure didn't disappear—it just became irrelevant next to the purpose in front of me.",
@@ -52,7 +45,6 @@ const timelineEvents: TimelineEvent[] = [
     {
         id: "seeking-stakes",
         title: "Seeking High Stakes",
-        phase: "Leadership",
         content: [
             "Once I stopped treating pressure as a verdict and started treating it as a signal of meaning, I began seeking high-stakes moments. I ran for NHS leadership—my hands trembled at the podium, but speaking about what genuinely mattered connected. I was elected Sergeant at Arms.",
             "During NASA Space Apps, when my team hit a wall with minutes left, I found myself managing the chaos instead of freezing inside it. We submitted just in time—and won.",
@@ -61,7 +53,6 @@ const timelineEvents: TimelineEvent[] = [
     {
         id: "volleyball-transformed",
         title: "Volleyball Transformed",
-        phase: "National Level",
         content: [
             "The same sport that once made me hope for the bench now has me competing nationally. Last season, my team placed second at USAV Nationals in Salt Lake City.",
             "I still feel a spike of nerves before every match, but I no longer interpret it as a prediction of failure. It's evidence that I care about the outcome.",
@@ -70,7 +61,6 @@ const timelineEvents: TimelineEvent[] = [
     {
         id: "research-readiness",
         title: "Research and Readiness",
-        phase: "Present Day",
         content: [
             "This fall, I co-authored a preprint challenging Euler's 250-year-old formula for predicting structural buckling, developing a physics-informed XGBoost model that reached R² of 0.97 and using SHAP analysis to understand why it outperformed classical theory.",
             "The pressure feels remarkably similar to that fifth-grade tournament—same elevated heart rate, same narrowed focus. The difference is what that feeling means to me now.",
@@ -79,7 +69,6 @@ const timelineEvents: TimelineEvent[] = [
     {
         id: "looking-forward",
         title: "The Person I'm Becoming",
-        phase: "The Goal",
         content: [
             "Today, when pressure shows up, it's a reminder that I am working on something that matters—to a teammate, a workshop participant, a research question, or a community I care about.",
             "The fifth-grader crying in the bathroom is still part of my story, but he no longer decides where it ends.",
@@ -97,14 +86,14 @@ export default function StorySection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    className="text-center mb-12"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
                         My Story
                     </h2>
                     <div className="w-24 h-1 bg-slate-700 mx-auto mb-6"></div>
-                    <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-                        Learning to stand in pressure, not run from it.
+                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                        The context behind how I handle pressure in research, competitions, and leadership.
                     </p>
                 </motion.div>
 
@@ -130,20 +119,10 @@ export default function StorySection() {
                                 whileHover={{ x: 4, scale: 1.01 }}
                                 className="bg-white rounded-xl p-5 md:p-6 shadow-md border border-slate-200 hover:shadow-lg transition-all"
                             >
-                                <div className="flex flex-wrap items-center gap-2 mb-3">
-                                    <h3 className="text-lg md:text-xl font-bold text-slate-900">
-                                        {event.title}
-                                    </h3>
-                                    <span className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-medium">
-                                        {event.phase}
-                                    </span>
-                                    {event.year && (
-                                        <span className="px-3 py-1 bg-slate-700 text-white rounded-full text-xs font-medium">
-                                            {event.year}
-                                        </span>
-                                    )}
-                                </div>
-                                <div className="space-y-2">
+                                <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-3">
+                                    {event.title}
+                                </h3>
+                                <div className="space-y-3">
                                     {event.content.map((paragraph, idx) => (
                                         <p key={idx} className="text-slate-700 leading-relaxed text-sm md:text-base">
                                             {paragraph}
@@ -155,22 +134,24 @@ export default function StorySection() {
                     ))}
                 </div>
 
-                {/* Closing */}
+                {/* Bridge to Evidence */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.6 }}
                     className="mt-12 text-center"
                 >
-                    <div className="inline-block px-6 py-4 rounded-xl bg-slate-100 border border-slate-200 shadow">
-                        <p className="text-lg font-semibold text-slate-800 mb-1">
-                            The journey continues...
-                        </p>
-                        <p className="text-slate-600 text-sm">
-                            Not in spite of the pressure, but alongside it.
-                        </p>
-                    </div>
+                    <p className="text-slate-600 text-lg">
+                        That mindset now shows up in projects like{" "}
+                        <Link href="#portfolio" className="text-slate-800 font-semibold hover:underline">
+                            Beyond Euler
+                        </Link>{" "}
+                        and{" "}
+                        <Link href="#extracurriculars" className="text-slate-800 font-semibold hover:underline">
+                            Tech4Silvers
+                        </Link>.
+                    </p>
                 </motion.div>
             </div>
         </section>

@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
   images: {
+    unoptimized: true,
     domains: [],
     remotePatterns: [
       {
@@ -12,4 +15,3 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
-
