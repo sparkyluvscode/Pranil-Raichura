@@ -11,8 +11,7 @@ const navItems = [
   { name: "Projects", href: "#portfolio" },
   { name: "Research", href: "#research" },
   { name: "Academics", href: "#academic" },
-  { name: "Leadership", href: "#extracurriculars" },
-  { name: "Recommendation", href: "/recommendation" },
+  { name: "Extracurriculars", href: "#extracurriculars" },
 ];
 
 export default function Navigation() {

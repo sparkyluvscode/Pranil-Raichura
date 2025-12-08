@@ -89,7 +89,7 @@ export default function StorySection() {
             }}
         >
             {/* Overlay for readability */}
-            <div className="absolute inset-0 bg-white/85 backdrop-blur-sm"></div>
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-sm"></div>
 
             <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}

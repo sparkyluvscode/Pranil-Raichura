@@ -126,6 +126,9 @@ export const extracurriculars: Extracurricular[] = [
       "7 Tournaments played with USCF rating at 730",
       "Sitting in the 64th percentile of juniors (under 18) in the nation",
     ],
+    media: [
+      { type: 'image', path: '/extracurriculars/chess/chess_new.png', caption: 'USCF Chess' },
+    ],
   },
   {
     id: "violin",
@@ -182,5 +185,8 @@ export const extracurriculars: Extracurricular[] = [
       },
     ],
     achievements: ["Best Presentation Award"],
+    media: [
+      { type: 'image', path: '/extracurriculars/inspirit_ai/inspirit_ai_new.png', caption: 'Inspirit AI Scholars' },
+    ],
   },
 ];
