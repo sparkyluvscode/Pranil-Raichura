@@ -93,7 +93,7 @@ export default function MediaLightbox({ media, isOpen, onClose, initialIndex = 0
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.3 }}
-                        className="relative max-w-7xl max-h-[90vh] w-full mx-4"
+                        className="relative max-w-7xl max-h-[90vh] w-auto mx-4"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {currentMedia.type === 'image' ? (
