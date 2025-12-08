@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { extracurriculars, Extracurricular } from "@/data/extracurriculars";
 import MediaLightbox from "./MediaLightbox";
+import { useLightbox } from "./LightboxContext";
 
 const categories = ["All", "Research", "Sports", "Service", "Tech", "Music", "Leadership"] as const;
 type Category = typeof categories[number];
@@ -12,9 +13,15 @@ type Category = typeof categories[number];
 export default function Extracurriculars() {
   const [selectedCategory, setSelectedCategory] = useState<Category>("All");
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxOpen, setLightboxOpenLocal] = useState(false);
   const [lightboxMedia, setLightboxMedia] = useState<any[]>([]);
   const [lightboxInitialIndex, setLightboxInitialIndex] = useState(0);
+  const { setLightboxOpen: setGlobalLightboxOpen } = useLightbox();
+
+  // Sync local lightbox state with global context
+  useEffect(() => {
+    setGlobalLightboxOpen(lightboxOpen);
+  }, [lightboxOpen, setGlobalLightboxOpen]);
 
   const filteredExtracurriculars =
     selectedCategory === "All"
@@ -33,7 +40,7 @@ export default function Extracurriculars() {
   const openLightbox = (media: any[], index: number = 0) => {
     setLightboxMedia(media);
     setLightboxInitialIndex(index);
-    setLightboxOpen(true);
+    setLightboxOpenLocal(true);
   };
 
   return (
@@ -251,7 +258,7 @@ export default function Extracurriculars() {
       <MediaLightbox
         media={lightboxMedia}
         isOpen={lightboxOpen}
-        onClose={() => setLightboxOpen(false)}
+        onClose={() => setLightboxOpenLocal(false)}
         initialIndex={lightboxInitialIndex}
       />
     </section>

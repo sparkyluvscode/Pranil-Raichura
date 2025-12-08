@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useLightbox } from "./LightboxContext";
 
 const navItems = [
   { name: "Story", href: "#story" },
@@ -19,6 +20,7 @@ export default function Navigation() {
   const [activeSection, setActiveSection] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { isLightboxOpen } = useLightbox();
 
   useEffect(() => {
     // Only track scroll on home page
@@ -64,9 +66,11 @@ export default function Navigation() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-[10000] transition-all duration-300 ${isScrolled
-        ? "bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-100"
-        : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-[10000] transition-all duration-300 ${isLightboxOpen
+        ? "bg-transparent pointer-events-none opacity-0"
+        : isScrolled
+          ? "bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-100"
+          : "bg-transparent"
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

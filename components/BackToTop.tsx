@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useLightbox } from './LightboxContext';
 
 export default function BackToTop() {
     const [isVisible, setIsVisible] = useState(false);
+    const { isLightboxOpen } = useLightbox();
 
     useEffect(() => {
         const toggleVisibility = () => {
@@ -25,6 +27,11 @@ export default function BackToTop() {
             behavior: 'smooth'
         });
     };
+
+    // Hide when lightbox is open
+    if (isLightboxOpen) {
+        return null;
+    }
 
     return (
         <button
@@ -48,3 +55,4 @@ export default function BackToTop() {
         </button>
     );
 }
+
