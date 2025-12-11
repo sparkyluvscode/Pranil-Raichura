@@ -57,7 +57,7 @@ export default function ComingSoon() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    Coming Soon
+                    coming soon
                 </motion.h1>
 
                 {/* Animated loading dots */}
